@@ -253,7 +253,7 @@ def get_log_dict(sim_log_path):
 
 if __name__ == "__main__":
 
-    sim_log_path = "./logs/2022-08-11__14-27-42/"
+    sim_log_path = "./logs/2022-08-19__12-56-15/"
 
     log_dict = get_log_dict(sim_log_path)
 

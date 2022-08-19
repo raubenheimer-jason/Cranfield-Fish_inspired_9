@@ -142,7 +142,8 @@ class UAV_original_fish(UavFishCore):
         if self.sampler_alg_pos == 1:
             if self.grid_arr_obj.any_unassigned_region():
                 # select nearest region
-                region = self.select_nearest_region()
+                uav_abs_bl_pos = self.get_abs_block_position()
+                region = self.select_nearest_region(uav_abs_bl_pos)
                 # set profitability = 0 -> should already be zero
                 self.sampler_alg_pos = 2
             else:
@@ -229,7 +230,7 @@ class UAV_original_fish(UavFishCore):
 
         if self.follower_alg_pos == 1:
             # select highly profitable region
-            region = self.select_nearest_highly_profitable_region()
+            region = self.select_nearest_highly_profitable_region(region)
             if region == False:
                 # might be because there are no samplers? or because there are no unassigned blocks...
                 if self.no_unassigned_block_or_mission_timeout():

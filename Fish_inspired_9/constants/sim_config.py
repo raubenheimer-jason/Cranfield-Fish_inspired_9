@@ -1,8 +1,8 @@
 
 from constants.sim_config_functions import check_sim_config
 
-SIM_CONFIG = {"short_sim": True,
-              "long_sim": False,
+SIM_CONFIG = {"short_sim": False,
+              "long_sim": True,
               "mega_sim": False}
 
 check_sim_config(SIM_CONFIG)
@@ -26,7 +26,7 @@ if SIM_CONFIG["short_sim"] == True:
     # UAV_NUMS = ((1, 1),
     #             (2, 2),)
     # UAV_NUMS = ((1, 2), (2, 3),)
-    UAV_NUMS = ((1, 5),)
+    UAV_NUMS = ((2, 4),)
     # UAV_NUMS = ((2, 4), )
 
     REGION_SIZE = 3  # smaller 'grid' within the larger area (a x a area)
@@ -44,14 +44,16 @@ if SIM_CONFIG["short_sim"] == True:
 
 elif SIM_CONFIG["long_sim"] == True:
 
-    SIMULATIONS = {"original": True, "implicit": True}
+    SIMULATIONS = {"original": True,
+                   "implicit": True,
+                   "implicit_prediction": False}
 
     SHOW_SIMULATION = False
 
     PLAY_INITIAL_VAL = True
 
     # simulations per configuration
-    NUM_SIMULATIONS = 5
+    NUM_SIMULATIONS = 15
 
     # (NUM_SWARMS, NUM_UAV_PER_SWARM)
     UAV_NUMS = ((1, 4),     # 4
@@ -73,7 +75,9 @@ elif SIM_CONFIG["long_sim"] == True:
 
 elif SIM_CONFIG["mega_sim"] == True:
 
-    SIMULATIONS = {"original": True, "implicit": True}
+    SIMULATIONS = {"original": False,
+                   "implicit": False,
+                   "implicit_prediction": False}
 
     SHOW_SIMULATION = False
 
