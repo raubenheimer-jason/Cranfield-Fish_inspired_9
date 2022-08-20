@@ -239,8 +239,6 @@ def plot_original_vs_implicit(log_dict):
             f[i].legend()
             f[i].set_xlabel("Number of UAVs")
             if i == 0:
-                print(f"i: {i}, k: {k}")
-                # f[i].set_ylabel(PLOT_Y_UNITS[k])
                 f[i].set_ylabel(LOG_ARR_METRICS[k][5])
             f[i].set_xlim(lims[k][0])
             f[i].set_ylim(lims[k][1])
@@ -268,7 +266,7 @@ def get_log_dict(sim_log_path):
 if __name__ == "__main__":
 
     # sim_log_path = "./logs/2022-08-19__12-59-38/"
-    sim_log_path = "./logs/2022-08-20__15-34-23/"
+    sim_log_path = "./logs/2022-08-20__15-44-53/"
 
     log_dict = get_log_dict(sim_log_path)
 
