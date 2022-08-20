@@ -9,7 +9,7 @@ import pickle
 import pprint
 
 
-SAVE_FIGS = False
+SAVE_FIGS = True
 SHOW_PLOTS = True
 
 SIM_TYPES = ("original", "implicit")
@@ -253,7 +253,7 @@ def get_log_dict(sim_log_path):
 
 if __name__ == "__main__":
 
-    sim_log_path = "./logs/2022-08-19__12-56-15/"
+    sim_log_path = "./logs/2022-08-19__12-59-38/"
 
     log_dict = get_log_dict(sim_log_path)
 

@@ -1,8 +1,8 @@
 
 from constants.sim_config_functions import check_sim_config
 
-SIM_CONFIG = {"short_sim": False,
-              "long_sim": True,
+SIM_CONFIG = {"short_sim": True,
+              "long_sim": False,
               "mega_sim": False}
 
 check_sim_config(SIM_CONFIG)
@@ -12,7 +12,7 @@ check_sim_config(SIM_CONFIG)
 if SIM_CONFIG["short_sim"] == True:
 
     SIMULATIONS = {"original": False,
-                   "implicit": False,
+                   "implicit": True,
                    "implicit_prediction": False}
 
     SHOW_SIMULATION = True
@@ -26,16 +26,16 @@ if SIM_CONFIG["short_sim"] == True:
     # UAV_NUMS = ((1, 1),
     #             (2, 2),)
     # UAV_NUMS = ((1, 2), (2, 3),)
-    UAV_NUMS = ((2, 4),)
+    UAV_NUMS = ((2, 5),)
     # UAV_NUMS = ((2, 4), )
 
     REGION_SIZE = 3  # smaller 'grid' within the larger area (a x a area)
     GRID_SIZE = 4  # each block in the grid represents a region (b x b area)
 
     # SURV_NUMS = (10, 20)
-    SURV_NUMS = (20, )
+    SURV_NUMS = (15, )
 
-    TIMEOUT_ITERATIONS = 1000
+    TIMEOUT_ITERATIONS = 400
 
     SURV_LIFESPAN_RANGE = (1, TIMEOUT_ITERATIONS)  # (min, max) iterations
 
