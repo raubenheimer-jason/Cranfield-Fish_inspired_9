@@ -27,11 +27,18 @@ from copy import deepcopy
 import pprint
 
 
-def iterate(uavs_obj):
+def iterate(uavs_obj, uav_0_time_arr):
     """ Update all UAV objects... """
     uavs = uavs_obj.get_uavs()
-    for uav in uavs:
+    for i, uav in enumerate(uavs):
+        if i == 0:
+            start_time = time.time_ns()
+
         uav.iterate_uav()
+
+        if i == 0:
+            loop_time_ns = time.time_ns() - start_time
+            uav_0_time_arr.append(loop_time_ns)
 
 
 def mission_timeout(iter_count):
@@ -52,6 +59,7 @@ def run_loop(run,
              uavs_obj,
              disp_obj,
              loop_time_arr,
+             uav_0_time_arr,
              log_obj,
              num_surv):
     """ calls function that updates all UAVs, then updates the display.
@@ -66,7 +74,7 @@ def run_loop(run,
         if next[0] == True or SHOW_SIMULATION == False:
 
             next[0] = False
-            iterate(uavs_obj)
+            iterate(uavs_obj, uav_0_time_arr)
 
             iter_count[0] += 1
 
@@ -129,6 +137,7 @@ def main(sim_num,
                                "state"]]  # assigned, unassigned, explored
     next = [False]
     loop_time_arr = []
+    uav_0_time_arr = []
     uav_pos_arr = [[] for _ in range(total_uav_num)]
 
     if sim_type == "implicit":
@@ -228,6 +237,7 @@ def main(sim_num,
              uavs_obj,
              disp_obj,
              loop_time_arr,
+             uav_0_time_arr,
              log_obj,
              num_surv)
 
@@ -238,6 +248,7 @@ def main(sim_num,
                         surv_log_arr,
                         explored_block_log_arr,
                         loop_time_arr,
+                        uav_0_time_arr,
                         num_surv,
                         total_uav_num)
 

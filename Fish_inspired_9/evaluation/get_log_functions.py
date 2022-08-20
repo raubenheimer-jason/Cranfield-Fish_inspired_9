@@ -2,6 +2,13 @@
 from statistics import mean
 
 
+def get_uav0_iter_time(uav0_time_arr, config_info):
+
+    iter_time_us = round(mean(uav0_time_arr)/1000)
+
+    return iter_time_us
+
+
 def get_perc_rescued_survivors(survivors_arr, config_info):
 
     num_surv = int(config_info[1])

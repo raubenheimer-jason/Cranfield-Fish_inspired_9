@@ -62,6 +62,7 @@ def add_to_log_dict(log_dict,
                     surv_log_arr,
                     exp_bl,
                     loop_time_arr,
+                    uav_0_time_arr,
                     num_surv,
                     num_uav):
 
@@ -73,6 +74,9 @@ def add_to_log_dict(log_dict,
 
     log_dict["simulations"][log_f_name][sim_num].update(
         {"loop_time": loop_time_arr})
+
+    log_dict["simulations"][log_f_name][sim_num].update(
+        {"uav0_iter_time": uav_0_time_arr})
 
     log_dict["simulations"][log_f_name][sim_num].update(
         {"num_surv": num_surv})

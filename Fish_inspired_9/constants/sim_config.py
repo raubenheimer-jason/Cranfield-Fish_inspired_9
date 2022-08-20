@@ -1,8 +1,8 @@
 
 from constants.sim_config_functions import check_sim_config
 
-SIM_CONFIG = {"short_sim": True,
-              "long_sim": False,
+SIM_CONFIG = {"short_sim": False,
+              "long_sim": True,
               "mega_sim": False}
 
 check_sim_config(SIM_CONFIG)
@@ -11,7 +11,7 @@ check_sim_config(SIM_CONFIG)
 
 if SIM_CONFIG["short_sim"] == True:
 
-    SIMULATIONS = {"original": False,
+    SIMULATIONS = {"original": True,
                    "implicit": True,
                    "implicit_prediction": False}
 

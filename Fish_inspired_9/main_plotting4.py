@@ -9,49 +9,61 @@ import pickle
 import pprint
 
 
-SAVE_FIGS = True
+SAVE_FIGS = False
 SHOW_PLOTS = True
 
 SIM_TYPES = ("original", "implicit")
 
-# key in dict, function that gets metric, log dict key name, show plot bool, plot title
+# key in dict, function that gets metric, log dict key name, show plot bool, plot title, plot Y unit
 LOG_ARR_METRICS = [["perc_rescued_survivors",
                     get_perc_rescued_survivors,
                     "survivors",  # this is the key that holds the data that the function will use
                     True,
-                    "Percentage of Rescued Survivors"],
+                    "Percentage of Rescued Survivors",
+                    "Percentage"],
                    ["iter_to_rescue_survivor",
                     get_iter_to_rescue_survivor,
                     "survivors",
                     True,
-                    "Mean Iterations to Rescue"],
+                    "Mean Iterations to Rescue",
+                    "Iterations"],
+                   ["uav0_iter_time",
+                    get_uav0_iter_time,
+                    "uav0_iter_time",
+                    True,
+                    "Single UAV Iteration Time",
+                    "us"],
                    ["loop_time_us",
                     get_loop_time_us,
                     "loop_time",
                     True,
-                    "Iteration Time"],
+                    "Iteration Time",
+                    "us"],
                    ["total_sim_time_ms",
                     get_total_sim_time_ms,
                     "loop_time",
                     True,
-                    "Total Simulation Time"],
+                    "Total Simulation Time",
+                    "ms"],
                    ["perc_blocks_explored",
                     get_perc_blocks_explored,
                     "explored_blocks",
                     True,
-                    "Percentage of Explored Blocks"],
+                    "Percentage of Explored Blocks",
+                    "Percentage"],
                    ["iters_bet_explored",
                     get_iters_bet_explored,
                     "explored_blocks",
                     True,
-                    "Iterations Between Explored Blocks"]]
+                    "Iterations Between Explored Blocks",
+                    "Iterations"]]
 
-PLOT_Y_UNITS = ["Percentage",
-                "Iterations",
-                "us",
-                "ms",
-                "Percentage",
-                "Iterations"]
+# PLOT_Y_UNITS = ["Percentage",
+#                 "Iterations",
+#                 "us",
+#                 "ms",
+#                 "Percentage",
+#                 "Iterations"]
 
 LOG_DICT_FILE_NAME = "log_dict.pkl"
 
@@ -227,7 +239,9 @@ def plot_original_vs_implicit(log_dict):
             f[i].legend()
             f[i].set_xlabel("Number of UAVs")
             if i == 0:
-                f[i].set_ylabel(PLOT_Y_UNITS[k])
+                print(f"i: {i}, k: {k}")
+                # f[i].set_ylabel(PLOT_Y_UNITS[k])
+                f[i].set_ylabel(LOG_ARR_METRICS[k][5])
             f[i].set_xlim(lims[k][0])
             f[i].set_ylim(lims[k][1])
             f[i].set_xticks(uav_num_arr)
@@ -253,7 +267,8 @@ def get_log_dict(sim_log_path):
 
 if __name__ == "__main__":
 
-    sim_log_path = "./logs/2022-08-19__12-59-38/"
+    # sim_log_path = "./logs/2022-08-19__12-59-38/"
+    sim_log_path = "./logs/2022-08-20__15-34-23/"
 
     log_dict = get_log_dict(sim_log_path)
 

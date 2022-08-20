@@ -91,6 +91,10 @@ class DisplayContainer:
                                                      self.iter_count,
                                                      None,
                                                      prediction_flag=self.prediction_flag)
+            predict_arr = self.grid_container.predict_arr
+
+        elif self.sim_type == "original":
+            predict_arr = None
 
         grid_arr = self.grid_arr_obj.get_grid_arr()
         # [blocks_explored, assigned_blocks, survivors_rescued]
@@ -110,6 +114,7 @@ class DisplayContainer:
                 run[0] = False
 
         if SHOW_SIMULATION:
+
             times = draw_sim_window(self.WIN,
                                     loop_time,
                                     self.start_time,
@@ -122,7 +127,7 @@ class DisplayContainer:
                                     self.iter_count,
                                     num_surv,
                                     self.sim_type,
-                                    self.grid_container.predict_arr)
+                                    predict_arr)
 
         if SHOW_SIMULATION and False:
             set_totals(tot_arr, times)
