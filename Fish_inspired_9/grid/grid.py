@@ -80,7 +80,6 @@ def set_states_arr(uav_i,
         uav_states_arr[uav_i] = state
 
     # used for UAVs
-    # last_known_states_lock will be None if update_grid_arr is called by Display3
     if last_known_modes_arr:
         if state == "sampler" or state == "follower":
             last_known_modes_arr[uav_i] = state
@@ -152,8 +151,8 @@ def uav_state_prediction(id, uav_i, prev_state_arr, uav_pos):
         # state_now = uav_state_from_height(uav_height)
         state_now = uav_state_from_height(uav_pos)
         # add new state to list for this iteration (only if height has changed...)
-        # prev_state_arr.append(state_now)
-        prev_state_arr.append([state_now] + uav_pos)  # ["follower", x, y, z]
+        prev_state_arr.append(state_now)
+        # prev_state_arr.append([state_now] + uav_pos)  # ["follower", x, y, z]
 
         # check if state arr for UAV is too long
         if len(prev_state_arr) > NUM_SAME_STATES:
@@ -161,11 +160,15 @@ def uav_state_prediction(id, uav_i, prev_state_arr, uav_pos):
 
         # print(f"prev_state_arr: {prev_state_arr}")
 
-        only_states_list = [item[0] for item in prev_state_arr]
+        # only_states_list = [item[0] for item in prev_state_arr]
         # print(f"only_states_list: {only_states_list}")
-        return_state = highest_state_count(id, uav_i, only_states_list)
+        # return_state = highest_state_count(id, uav_i, only_states_list)
+        return_state = highest_state_count(id, uav_i, prev_state_arr)
         # return_state = highest_state_count(id, uav_i, state_now, only_states_list)
         # return_state = highest_state_count(id, uav_i, state_now, prev_state_arr)
+
+        if id == -2:
+            print(f"highest_state_count: {return_state}")
 
         return return_state
 
@@ -358,6 +361,11 @@ def update_grid_arr(run_state,  # used for uav
     # time.sleep(0.5)
 
     # if id == -2:
+    if id == -1:  # -1 is display
+        print(f"all_prev_states_arr: {all_prev_states_arr}")
+        print(f"uav_states_arr: {uav_states_arr}")
+        print(f"last_known_modes_arr: {last_known_modes_arr}")
+        print("-----------------")
     #     print(f"loop time (ms): {(time.time()-s)*1000}")
 
 

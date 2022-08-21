@@ -3,7 +3,8 @@ from constants.sim_config import *
 
 # good looking sim: Region: 4, Grid: 4, uav_swarm: 4, uav_per_swarm: 5, surv: 45
 
-JUMP_Z_MOVE = True
+# JUMP_Z_MOVE = True
+JUMP_Z_MOVE = False
 
 
 MAX_NUM_UAV = UAV_NUMS[-1][0]*UAV_NUMS[-1][1]  # max num uav

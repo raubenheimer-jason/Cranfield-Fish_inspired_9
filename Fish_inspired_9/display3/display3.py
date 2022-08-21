@@ -471,8 +471,15 @@ def print_uav_state(WIN, uav_pos_arr, uav_states_arr, last_known_modes_arr):
 
     """
 
-    if not last_known_modes_arr[-1]:
-        return
+    # print(f"uav_states_arr: {uav_states_arr}")
+    # print(f"last_known_modes_arr: {last_known_modes_arr}")
+
+    for mode in last_known_modes_arr:
+        if not mode:
+            return
+
+    # if not last_known_modes_arr[-1]:
+    #     return
 
     uav_hs_arr = []  # heights and states array [[uav_z, uav_state],[]]
 

@@ -552,7 +552,7 @@ class UavFishCore(UavSelectBlock):
         self.state = "search"  # search, rescue
         self.target_px_pos = uav_pos_arr[i][0:3]
         self.speed_xy = BLOCK_SIZE/5  # "pixels" / iteration
-        self.speed_z = 1  # "meters" / iteration
+        self.speed_z = 5  # "meters" / iteration
         # self.i = i
         self.iter_count = iter_count
         # self.uav_pos_arr = uav_pos_arr

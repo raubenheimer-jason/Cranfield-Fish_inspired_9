@@ -45,6 +45,7 @@ class DisplayContainer:
         self.next = next
         self.quit_flag = quit_flag
         self.iter_count = iter_count
+        self.prev_iter_count = [-1]
         self.uav_pos_arr = uav_pos_arr
         self.surv_arr = surv_arr
         self.start_time = start_time
@@ -87,10 +88,16 @@ class DisplayContainer:
 
         if self.sim_type == "implicit" or self.sim_type == "implicit_prediction":
             # always update grid arr first...
-            self.grid_container.call_update_grid_arr(self.grid_arr_obj,
-                                                     self.iter_count,
-                                                     None,
-                                                     prediction_flag=self.prediction_flag)
+
+            # only if next iteration... dont need to do this at 60 FPS or whatever the setting is...
+            # print(f"self.next[0]: {self.next[0]}")
+            # if self.next[0] == True:
+            if not self.iter_count[0] == self.prev_iter_count[0]:
+                self.grid_container.call_update_grid_arr(self.grid_arr_obj,
+                                                         self.iter_count,
+                                                         None,
+                                                         prediction_flag=self.prediction_flag)
+                self.prev_iter_count[0] = self.iter_count[0]
             predict_arr = self.grid_container.predict_arr
 
         elif self.sim_type == "original":
