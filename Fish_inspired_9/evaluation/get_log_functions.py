@@ -27,6 +27,27 @@ def get_perc_rescued_survivors(survivors_arr, config_info):
     return perc_rescued_survivors
 
 
+def get_iter_to_rescue_survivor_2(survivors_arr, config_info):
+    """ This version 2 function doesnt make the iterations 0 if there are no survivors rescued
+        as this is misleading. It makes it look like with low numbers of survivors the algorithms
+        are performing well when they're acutally not finding any survivors and the 0 brings
+        the mean down.
+    """
+
+    # surv_log_arr: iter_num (rescued), surv_num, x_bl_pos, y_bl_pos, surv_state, surv_lifespan
+    # store array of iteration numbers when survivors were rescued
+    rescued_surv = [surv[0] for surv in survivors_arr if surv[4] == "rescued"]
+
+    num_rescued = len(rescued_surv)
+    if num_rescued == 0:
+        # rescued_surv = [0]
+        return None
+
+    iter_to_rescue_survivor = round(mean(rescued_surv))
+
+    return iter_to_rescue_survivor
+
+
 def get_iter_to_rescue_survivor(survivors_arr, config_info):
 
     # surv_log_arr: iter_num (rescued), surv_num, x_bl_pos, y_bl_pos, surv_state, surv_lifespan

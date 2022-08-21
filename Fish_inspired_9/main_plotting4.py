@@ -9,8 +9,8 @@ import pickle
 import pprint
 
 
-SAVE_FIGS = False
-SHOW_PLOTS = True
+SAVE_FIGS = True
+SHOW_PLOTS = False
 
 SIM_TYPES = ("original", "implicit")
 
@@ -22,7 +22,7 @@ LOG_ARR_METRICS = [["perc_rescued_survivors",
                     "Percentage of Rescued Survivors",
                     "Percentage"],
                    ["iter_to_rescue_survivor",
-                    get_iter_to_rescue_survivor,
+                    get_iter_to_rescue_survivor_2,  # get_iter_to_rescue_survivor
                     "survivors",
                     True,
                     "Mean Iterations to Rescue",
@@ -132,7 +132,9 @@ def get_plot_data(data_dict, surv_arr, uav_arr, total_blocks, timeout_iterations
                 input_data = data_dict[sim_config][sim_num][metric[2]]
                 # dont all need num_uav and num_surv...
                 m = metric[1](input_data, config_info)
-                all_im_data[i].append(m)
+                if not m == None:
+                    # get_iter_to_rescue_survivor_2 will return None if no survivors were rescued
+                    all_im_data[i].append(m)
 
         for i, metric in enumerate(LOG_ARR_METRICS):
             mean_calc = mean(all_im_data[i])
