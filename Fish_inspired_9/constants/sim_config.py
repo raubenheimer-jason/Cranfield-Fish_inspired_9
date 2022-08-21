@@ -1,8 +1,8 @@
 
 from constants.sim_config_functions import check_sim_config
 
-SIM_CONFIG = {"short_sim": True,
-              "long_sim": False,
+SIM_CONFIG = {"short_sim": False,
+              "long_sim": True,
               "mega_sim": False}
 
 check_sim_config(SIM_CONFIG)
