@@ -30,17 +30,16 @@ if SIM_CONFIG["short_sim"] == True:
     UAV_NUMS = ((1, 4), )
 
     REGION_SIZE = 3  # smaller 'grid' within the larger area (a x a area)
-    GRID_SIZE = 4  # each block in the grid represents a region (b x b area)
+    GRID_SIZE = 3  # each block in the grid represents a region (b x b area)
 
     # SURV_NUMS = (10, 20)
     SURV_NUMS = (15, )
 
-    TIMEOUT_ITERATIONS = 400
+    TIMEOUT_ITERATIONS = 1000
 
     SURV_LIFESPAN_RANGE = (1, TIMEOUT_ITERATIONS)  # (min, max) iterations
 
     LOG_SIM = False
-
 
 elif SIM_CONFIG["long_sim"] == True:
 
@@ -53,7 +52,7 @@ elif SIM_CONFIG["long_sim"] == True:
     PLAY_INITIAL_VAL = True
 
     # simulations per configuration
-    NUM_SIMULATIONS = 15
+    NUM_SIMULATIONS = 500
 
     # (NUM_SWARMS, NUM_UAV_PER_SWARM)
     UAV_NUMS = ((1, 4),     # 4
@@ -67,7 +66,7 @@ elif SIM_CONFIG["long_sim"] == True:
 
     SURV_NUMS = (4, 32, 128)
 
-    TIMEOUT_ITERATIONS = 550
+    TIMEOUT_ITERATIONS = 750
 
     SURV_LIFESPAN_RANGE = (100, TIMEOUT_ITERATIONS)  # (min, max) iterations
 

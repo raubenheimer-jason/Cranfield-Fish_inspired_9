@@ -109,9 +109,9 @@ def highest_state_count(id, uav_i, prev_state_arr):
 
     for key_val in ordered_dict.items():
 
-        # rescue state only requires one...
-        if key_val[0] == "rescue" and int(key_val[1]) > 0:
-            return "rescue"
+        # # rescue state only requires one... #! WHY ??
+        # if key_val[0] == "rescue" and int(key_val[1]) > 0:
+        #     return "rescue"
 
         if key_val[1] == first_val:
             max_cnt += 1
@@ -360,7 +360,7 @@ def update_grid_arr(run_state,  # used for uav
 
     # time.sleep(0.5)
 
-    # # if id == -2:
+    # # # if id == -2:
     # if id == -1:  # -1 is display
     #     print(f"all_prev_states_arr: {all_prev_states_arr}")
     #     print(f"uav_states_arr: {uav_states_arr}")

@@ -10,7 +10,7 @@ import pprint
 
 
 SAVE_FIGS = True
-SHOW_PLOTS = False
+SHOW_PLOTS = True
 
 SIM_TYPES = ("original", "implicit")
 
@@ -268,7 +268,10 @@ def get_log_dict(sim_log_path):
 if __name__ == "__main__":
 
     # sim_log_path = "./logs/2022-08-19__12-59-38/"
-    sim_log_path = "./logs/2022-08-20__15-44-53/"
+    # sim_log_path = "./logs/2022-08-20__15-44-53/"
+    # sim_log_path = "./logs/2022-08-21__12-50-48/"
+    # sim_log_path = "./logs/2022-08-21__15-37-56/"
+    sim_log_path = "./logs/2022-08-21__15-37-56/"
 
     log_dict = get_log_dict(sim_log_path)
 

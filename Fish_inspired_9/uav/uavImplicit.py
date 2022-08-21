@@ -330,34 +330,38 @@ class UAV_implicit_fish(UavFishCore):
 
         # TODO assert rather...
 
-        if self.mode == "sampler":
+        assert self.mode == "sampler"
 
-            if self.grid_arr_obj.any_unassigned_region():
-                # select nearest region
-                uav_abs_bl_pos = self.get_abs_block_position()
-                region = self.select_nearest_region(uav_abs_bl_pos)
-                # set profitability = 0 -> should already be zero
-                cur_abs_bl_pos = self.get_abs_block_position()  # TODO is this a repeat??
-                bl_abs_bl_pos = self.select_nearest_block(cur_abs_bl_pos,
-                                                          region)
-                if not bl_abs_bl_pos == False:
-                    # set UAV target position
-                    self.update_target_position(x_abs_bl_pos=bl_abs_bl_pos[0],
-                                                y_abs_bl_pos=bl_abs_bl_pos[1])
+        # if self.mode == "sampler":
 
-                    # set to 3 so it searches the block...
-                    self.sampler_alg_pos = 3
+        if self.grid_arr_obj.any_unassigned_region():
+            # select nearest region
+            uav_abs_bl_pos = self.get_abs_block_position()
+            region = self.select_nearest_region(uav_abs_bl_pos)
+            # set profitability = 0 -> should already be zero
+            # cur_abs_bl_pos = self.get_abs_block_position()  # TODO is this a repeat??
+            # bl_abs_bl_pos = self.select_nearest_block(cur_abs_bl_pos,
+            #                                           region)
+            bl_abs_bl_pos = self.select_nearest_block(uav_abs_bl_pos,
+                                                      region)
+            if not bl_abs_bl_pos == False:
+                # set UAV target position
+                self.update_target_position(x_abs_bl_pos=bl_abs_bl_pos[0],
+                                            y_abs_bl_pos=bl_abs_bl_pos[1])
 
-                else:
-                    raise ValueError("why is this false??")
+                # set to 3 so it searches the block...
+                self.sampler_alg_pos = 3
 
             else:
-                self.set_mode("follower")
-                # need to set the follower_alg_pos to
-                # set follower_alg_pos to 4 so it looks for survivor in the already assigned block
-                self.follower_alg_pos = 4
+                raise ValueError("why is this false??")
+
         else:
-            print("Error in uav.UAV_fish.select_new_region")
+            self.set_mode("follower")
+            # need to set the follower_alg_pos to
+            # set follower_alg_pos to 4 so it looks for survivor in the already assigned block
+            self.follower_alg_pos = 4
+        # else:
+        #     print("Error in uav.UAV_fish.select_new_region")
 
     def select_new_block(self, exc_bls=[]):
         """ original target block has become not unassigned, this method selects a new block"""
