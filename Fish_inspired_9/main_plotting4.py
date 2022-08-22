@@ -141,16 +141,23 @@ def get_plot_data(data_dict, surv_arr, uav_arr, total_blocks, timeout_iterations
             ind = uav_arr.index(num_uav)
             plot_dict["plot_arrays"][num_surv][metric[0]
                                                ][sim_type][ind] = mean_calc
-            max_calc = max(all_im_data[i])
-            min_calc = min(all_im_data[i])
+            # max_calc = max(all_im_data[i])
+            # min_calc = min(all_im_data[i])
             # [0] is max, [1] is min
-            if max_mins[i][0] < max_calc:
-                max_mins[i][0] = max_calc
-                plot_dict["axis_lims"][metric[0]]["max_y"] = max_calc
+            if max_mins[i][0] < mean_calc:
+                max_mins[i][0] = mean_calc
+                plot_dict["axis_lims"][metric[0]]["max_y"] = mean_calc
 
-            if max_mins[i][1] > min_calc:
-                max_mins[i][1] = min_calc
-                plot_dict["axis_lims"][metric[0]]["min_y"] = min_calc
+            if max_mins[i][1] > mean_calc:
+                max_mins[i][1] = mean_calc
+                plot_dict["axis_lims"][metric[0]]["min_y"] = mean_calc
+            # if max_mins[i][0] < max_calc:
+            #     max_mins[i][0] = max_calc
+            #     plot_dict["axis_lims"][metric[0]]["max_y"] = max_calc
+
+            # if max_mins[i][1] > min_calc:
+            #     max_mins[i][1] = min_calc
+            #     plot_dict["axis_lims"][metric[0]]["min_y"] = min_calc
 
     return plot_dict
 
@@ -271,7 +278,7 @@ if __name__ == "__main__":
     # sim_log_path = "./logs/2022-08-20__15-44-53/"
     # sim_log_path = "./logs/2022-08-21__12-50-48/"
     # sim_log_path = "./logs/2022-08-21__15-37-56/"
-    sim_log_path = "./logs/2022-08-21__15-37-56/"
+    sim_log_path = "./logs/2022-08-21__21-48-31/"
 
     log_dict = get_log_dict(sim_log_path)
 

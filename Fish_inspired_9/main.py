@@ -4,6 +4,8 @@
 
 # pygame: https://www.youtube.com/watch?v=jO6qQDNa2UY&ab_channel=TechWithTim
 
+# 500 iterations sim: Simulations complete. Total time (s): 93762.6
+
 """
 
 TODO: Prediction for which block other UAVs are going to... so two UAVs dont travel to the same block
